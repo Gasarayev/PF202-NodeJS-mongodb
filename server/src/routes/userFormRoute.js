@@ -9,13 +9,13 @@ const {
   postProduct,
 } = require("../controllers/userFormControllers");
 
-// const validateProduct = require("../middlewares/validateProduct");
-// const apiKeyMiddleware = require("../middlewares/apiKey");
+const validateUserForm = require("../middlewares/validateUserForm");
+const apiKeyMiddleware = require("../middlewares/apiKey");
 
-router.get("/", getAllProducts);
+router.get("/", apiKeyMiddleware, getAllProducts);
 router.get("/:id", getProductById);
 router.delete("/:id", deleteProductById);
 router.patch("/:id", updateProductById);
-router.post("/", postProduct);
+router.post("/", apiKeyMiddleware, validateUserForm, postProduct);
 
 module.exports = router;

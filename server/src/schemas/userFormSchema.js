@@ -1,3 +1,4 @@
+const { required } = require("joi");
 const mongoose = require("mongoose");
 
 const userFormSchema = new mongoose.Schema({
@@ -19,11 +20,15 @@ const userFormSchema = new mongoose.Schema({
   },
   profileImage: {
     type: String, 
-    required: false,
+    required: true,
   },
   message: {
     type: String,
     required: false,
+  },
+  public_id: {
+    type: String,
+    required: true
   }
 },{
   timestamps:true,
