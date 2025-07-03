@@ -1,10 +1,14 @@
 const mongoose = require("mongoose");
-const { DB_URI, DB_PASS } = require("./config");
+require('dotenv').config()
+
 
 const connectDB = async () => {
   try {
-    await mongoose.connect(DB_URI.replace("<db_password>", DB_PASS));
-    console.log(`MongoDB Connected 🥭`);
+
+    const conn = await mongoose.connect(process.env.MONGO_DB_URI, {
+        dbName: process.env.MONGO_DB_USERNAME,
+    })
+    console.log(`MongoDB Connected 💪 `);
   } catch (error) {
     console.error("❌ MongoDB connection error:", error.message);
     process.exit(1);
