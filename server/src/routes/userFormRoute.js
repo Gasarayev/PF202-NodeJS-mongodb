@@ -11,11 +11,12 @@ const {
 
 const validateUserForm = require("../middlewares/validateUserForm");
 const apiKeyMiddleware = require("../middlewares/apiKey");
+const upload = require("../middlewares/multer");
 
-router.get("/", apiKeyMiddleware, getAllProducts);
+router.get("/", getAllProducts);
 router.get("/:id", getProductById);
 router.delete("/:id", deleteProductById);
-router.patch("/:id", updateProductById);
-router.post("/", apiKeyMiddleware, validateUserForm, postProduct);
+router.patch("/:id",upload.single("profileImage"), updateProductById);
+router.post("/", apiKeyMiddleware, validateUserForm, upload.single("profileImage"), postProduct);
 
 module.exports = router;
