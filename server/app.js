@@ -3,6 +3,7 @@ const helmet = require("helmet");
 const cors = require("cors");
 const { rateLimit } = require("express-rate-limit");
 const app = express();
+const errorHandler = require("./src/errors/errorBoundary")
 require("dotenv").config();
 
 // global middlewares
@@ -29,5 +30,10 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
+
+
+// global error handler
+
+app.use(errorHandler)
 
 module.exports = app;

@@ -24,11 +24,11 @@ const userFormSchema = new mongoose.Schema({
   message: {
     type: String,
     required: false,
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+  }
+},{
+  timestamps:true,
+  versionKey: false
 });
+
 
 module.exports = userFormSchema;
