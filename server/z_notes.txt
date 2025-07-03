@@ -1,3 +1,0 @@
-1. pattern design
-2. npm init -y, npm i -D nodemon (package.jsondan deyish dev-i)
-3. npm installar ()
