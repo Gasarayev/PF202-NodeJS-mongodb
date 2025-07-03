@@ -4,6 +4,7 @@ const cors = require("cors");
 const { rateLimit } = require("express-rate-limit");
 const app = express();
 const errorHandler = require("./src/errors/errorBoundary")
+const userFormRouter = require("./src/routes/userFormRoute")
 require("dotenv").config();
 
 // global middlewares
@@ -30,6 +31,9 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
+
+// route middleware
+app.use("/userForm", userFormRouter)
 
 
 // global error handler
