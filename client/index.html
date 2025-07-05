@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="az">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>İstifadəçi Formu</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input,
+        textarea {
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            outline-color: #4a90e2;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            background-color: #4a90e2;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #357abd;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="userForm">
+        <h1>İstifadəçi Formu</h1>
+        <input type="text" name="name" placeholder="Ad" required />
+        <input type="text" name="surname" placeholder="Soyad" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="file" name="profileImage" accept="image/*" required />
+        <textarea name="message" placeholder="Mesajınız..." required></textarea>
+        <button type="submit">Göndər</button>
+    </form>
+
+
+    <ul id="users">
+
+    </ul>
+
+    <script>
+        const form = document.getElementById("userForm");
+        const usersList = document.getElementById("users");
+
+        async function allUsers() {
+
+            try {
+                const res = await fetch("http://localhost:5050/userForm");
+                const data = await res.json()
+                const users = data.data
+                console.log(users)
+
+                usersList.innerHTML ="";
+
+                users.forEach(e => {
+                    const li = document.createElement("li");
+
+                    li.textContent = `${e.name} ${e.surname}`
+
+                    usersList.appendChild(li)
+                    console.log(e.name)
+                });
+
+                
+
+            } catch (error) {
+                console.log("error", error)
+            }
+        }
+
+        form.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+
+            try {
+                const res = await fetch("http://localhost:5050/userForm", {
+                    method: "POST",
+                    headers: {
+                        "api-key": "gasar"
+                    },
+                    body: formData,
+                });
+
+                const data = await res.json();
+                if (res.ok) {
+                    alert("Mesaj göndərildi ✅");
+                    form.reset();
+                } else {
+                    alert("Xəta baş verdi: " + data.message);
+                }
+            } catch (error) {
+                console.error(error);
+                alert("Serverə qoşulmaq mümkün olmadı.");
+            }
+        });
+
+        window.addEventListener("DOMContentLoaded", allUsers)
+    </script>
+</body>
+
+</html>

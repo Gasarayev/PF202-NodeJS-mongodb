@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Node.js Backend Layihə Planı</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      padding: 40px;
+      background-color: #f4f4f4;
+    }
+    h1, h2 {
+      color: #333;
+    }
+    h1 {
+      margin-bottom: 0;
+    }
+    section {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 25px;
+      border-left: 5px solid #0d6efd;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    code {
+      background: #eee;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Node.js Backend Layihə Quruluşu</h1>
+  <p>Bu sənəd backend layihəsini sıfırdan necə düzgün qurmaq lazım olduğunu izah edir.</p>
+
+  <section>
+    <h2>1. Layihəni Başlat</h2>
+    <p><strong>Görüləcək işlər:</strong></p>
+    <ul>
+      <li><code>npm init -y</code> ilə layihəni başlat.</li>
+      <li><code>nodemon</code> paketini <code>devDependency</code> olaraq quraşdır.</li>
+      <li><code>package.json</code> daxilində <code>scripts</code> bölməsinə <code>"dev": "nodemon server.js"</code> əlavə et.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2. Lazımi Paketləri Quraşdır</h2>
+    <p><strong>Görüləcək işlər:</strong></p>
+    <ul>
+      <li><code>express</code>, <code>mongoose</code>, <code>dotenv</code>, <code>cors</code>, <code>helmet</code> kimi əsas paketləri yüklə.</li>
+      <li>Əlavə ehtiyaclara uyğun <code>joi</code>, <code>multer</code>, <code>bcryptjs</code>, <code>jsonwebtoken</code> və s. quraşdır.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>3. app.js və server.js</h2>
+    <p><strong>Görüləcək işlər:</strong></p>
+    <ul>
+      <li><strong>app.js</strong>: Middleware-lər və route-lar burada qurulur.</li>
+      <li><strong>server.js</strong>: Mongo bağlantısı edilir və server işə salınır.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. config.js və db.js</h2>
+    <p><strong>Görüləcək işlər:</strong></p>
+    <ul>
+      <li><strong>config.js</strong>: .env dəyişkənlərini mərkəzləşdir.</li>
+      <li><strong>db.js</strong>: MongoDB bağlantı funksiyasını yaz.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>5. schemas/ (Əgər validation istifadə edilirsə)</h2>
+    <p><strong>Görüləcək işlər:</strong></p>
+    <ul>
+      <li>İstifadəçi və digər məlumatlar üçün giriş yoxlamalarını bu fayllarda et.</li>
+      <li><code>Joi</code> və ya <code>Zod</code> istifadə edilə bilər.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>6. models/</h2>
+    <p><strong>Görüləcək işlər:</strong></p>
+    <ul>
+      <li>Mongoose schema və modellərini burada yarat.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>7. services/</h2>
+    <p><strong>Görüləcək işlər:</strong></p>
+    <ul>
+      <li>Verilənlər bazasına aid funksiyalar burada yazılır.</li>
+      <li>Controller-lər bu servisləri istifadə edir.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>8. controllers/</h2>
+    <p><strong>Görüləcək işlər:</strong></p>
+    <ul>
+      <li>Router-dən gələn sorğular burada idarə olunur.</li>
+      <li>Məlumatlar cavablandırılır, service funksiyaları çağırılır.</li>
+      <li>Əlavə errorHandler funksiyaları da burada ola bilər.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>9. routers/</h2>
+    <p><strong>Görüləcək işlər:</strong></p>
+    <ul>
+      <li>Bütün route-ları Express Router ilə burada yaz.</li>
+      <li>Controller funksiyalarını çağır.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>10. utils/</h2>
+    <p><strong>Görüləcək işlər:</strong></p>
+    <ul>
+      <li>Təkrar istifadə olunan yardımçı funksiyalar buraya yazılır.</li>
+      <li>Məsələn: Mongo məlumatlarını formatlamaq, mail göndərmək və s.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>11. Əlavə Fayllar və Qovluqlar</h2>
+    <p><strong>Görüləcək işlər:</strong></p>
+    <ul>
+      <li><strong>.env</strong>: Gizli məlumatlar burada saxlanılır (məs: DB URI).</li>
+      <li><strong>.gitignore</strong>: <code>node_modules</code> və <code>.env</code> mütləq əlavə olunmalıdır.</li>
+    </ul>
+  </section>
+
+</body>
+</html>

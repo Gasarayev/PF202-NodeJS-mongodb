@@ -12,14 +12,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // security middlewares
-
 app.use(helmet());
 
 const corsOptions = {
   origins: ["http://localhost:5730"],
   optionsSuccessStatus: 200,
 };
-
 app.use(cors(corsOptions));
 
 const limiter = rateLimit({
@@ -29,15 +27,20 @@ const limiter = rateLimit({
   legacyHeaders: false,
   // store: ... ,
 });
-
 app.use(limiter);
 
 // route middleware
 app.use("/userForm", userFormRouter)
 
-
 // global error handler
-
 app.use(errorHandler)
 
 module.exports = app;
+
+
+
+
+
+
+
+
